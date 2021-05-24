@@ -2,9 +2,12 @@ import React from 'react';
 
 const Home = () => {
 	return (
-		<div>
-			<h2>This is the homepage</h2>
-		</div>
+		<main className='home-body'>
+			<h2>
+				Welcome to Fake News! The one place you can guarantee will provide ONLY
+				Fake News, and nothing else!{' '}
+			</h2>
+		</main>
 	);
 };
 

@@ -1,6 +1,26 @@
 * {
 }
 
+/* p {
+	color: grey;
+	overflow: hidden;
+	height: 50px;
+	line-height: 16px;
+	position: relative;
+	word-wrap: break-word;
+} */
+
+li {
+	list-style-type: none;
+	padding: 1em;
+}
+
+img {
+	height: 130px;
+	width: 50%;
+	border-radius: 25px;
+}
+
 .App {
 	text-align: center;
 	background-color: lightgrey;
@@ -16,10 +36,22 @@
 	padding: 1em;
 }
 
+.home-body {
+	background-color: lightpink;
+	padding: 5em 0 5em 0;
+}
+
 .Articles,
 .Topics {
 	background-color: khaki;
 	text-align: left;
+	padding: 0.5em;
+}
+
+.select-label {
+	padding: 1em;
+}
+.select-field {
 	padding: 0.5em;
 }
 
@@ -47,6 +79,13 @@
 
 .each-topic {
 	text-align: center;
+}
+
+.individual-article {
+	padding: 1em;
+	background-color: bisque;
+	list-style-type: none;
+	border-radius: 25px;
 }
 
 /* 

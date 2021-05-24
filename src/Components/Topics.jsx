@@ -13,12 +13,13 @@ const Topics = () => {
 	return (
 		<main className='Topics'>
 			<h2>All Topics</h2>
+
 			<ul className='each-topic'>
 				{topics.map(({ slug, description }) => {
 					return (
 						<li key={slug} className='topics-list'>
 							<h2>
-								<Link to={`/topics/${slug}`}>{slug}</Link>
+								<Link to={`/articles?${slug}`}>{slug}</Link>
 							</h2>
 							<p>About: {description}</p>
 						</li>

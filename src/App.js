@@ -20,9 +20,13 @@ function App() {
 				<Route exact path='/articles'>
 					<Articles />
 				</Route>
+				<Route exact path='/articles/:article_id'>
+					<Article />
+				</Route>
 				<Route exact path='/topics'>
 					<Topics />
 				</Route>
+
 				<Route exact path='/users'>
 					<Accounts />
 				</Route>
