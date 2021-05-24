@@ -1,7 +1,55 @@
-.App {
-  text-align: center;
+* {
 }
 
+.App {
+	text-align: center;
+	background-color: lightgrey;
+}
+
+.Header {
+	background-color: darksalmon;
+	padding: 0.2em;
+}
+
+.Nav {
+	background-color: cornflowerblue;
+	padding: 1em;
+}
+
+.Articles,
+.Topics {
+	background-color: khaki;
+	text-align: left;
+	padding: 0.5em;
+}
+
+.articles-list {
+	background-color: cornsilk;
+	padding: 1em;
+	border-radius: 25px;
+	margin-bottom: 1em;
+}
+
+.topics-list {
+	background-color: cornsilk;
+	padding: 0.5em;
+	border-radius: 25px;
+	margin-bottom: 1em;
+}
+
+.each-article,
+.each-topic {
+	padding: 1em;
+	background-color: darkseagreen;
+	list-style-type: none;
+	border-radius: 25px;
+}
+
+.each-topic {
+	text-align: center;
+}
+
+/* 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +83,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */ ;
