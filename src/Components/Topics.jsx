@@ -12,6 +12,18 @@ const Topics = () => {
 	}, []);
 	return (
 		<main className='Topics'>
+			<div className='post-topic-form'>
+				<h2>Post a Topic:</h2>
+				<form>
+					<label>Topic: </label>
+					<input placeholder='state topics dropdown'></input>
+					<br />
+					<label>Body: </label>
+					<input></input>
+					<br />
+				</form>
+				<button>Post topic!</button>
+			</div>
 			<h2>All Topics</h2>
 
 			<ul className='each-topic'>

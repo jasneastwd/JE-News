@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAccountByUsername } from '../Utils/api';
+import { Link } from 'react-router-dom';
 
 const Account = () => {
 	const params = useParams();
@@ -16,7 +17,9 @@ const Account = () => {
 			<h2>Username: {account.username}</h2>
 			<img src={account.avatar_url} alt={account.username}></img>
 			<p>Name: {account.name}</p>
-			<button className='myButton'>Set User</button>
+			<Link to='/Users'>
+				<button className='myButton'>Switch User</button>
+			</Link>
 		</main>
 	);
 };

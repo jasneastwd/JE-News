@@ -1,8 +1,12 @@
 import React from 'react';
+import { UserContext } from '../contexts/User';
+import { useContext } from 'react';
 
 const Home = () => {
+	const { user } = useContext(UserContext);
 	return (
 		<main className='home-body'>
+			<h1>Hi there {user.username}, welcome back! </h1>
 			<h2>
 				Welcome to Fake News! The one place you can guarantee will provide ONLY
 				Fake News, and nothing else!{' '}
