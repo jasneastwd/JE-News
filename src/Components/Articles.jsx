@@ -6,10 +6,10 @@ const Articles = () => {
 	const [articles, setArticles] = useState([]);
 
 	useEffect(() => {
-		getArticles().then((articlesFromApi) => {
-			setArticles(articlesFromApi);
+		getArticles().then((articles) => {
+			setArticles(articles);
 		});
-	}, []);
+	}, [setArticles]);
 
 	return (
 		<main className='Articles'>
@@ -21,6 +21,15 @@ const Articles = () => {
 					<option value='coding'>Coding</option>
 					<option value='football'>Football</option>
 					<option value='cooking'>Cooking</option>
+				</select>
+			</form>
+
+			<form>
+				<label className='select-label'>Order by:</label>
+				<select className='select-field'>
+					<option value='title'>Title</option>
+					<option value='votes'>Votes</option>
+					<option value='created_at'>Date</option>
 				</select>
 			</form>
 
@@ -36,6 +45,8 @@ const Articles = () => {
 								<p>Topic: {topic}</p>
 							</Link>
 							<p>Posted: {created_at}</p>
+							<button className='myButton'>⬆️ Votes</button>
+							<button className='myButton'>⬇️ Votes</button>
 						</li>
 					);
 				})}
@@ -45,3 +56,22 @@ const Articles = () => {
 };
 
 export default Articles;
+
+// const [topic, setTopic] = useState('');
+
+// useEffect(() => {
+// 	if (topic === 'show-all') {
+// 		getArticles().then((articles) => {
+// 			setArticles(articles);
+// 		});
+// 	} else {
+// 		getArticlesByTopic(topic).then((articles) => {
+// 			setArticles(articles);
+// 		});
+// 	}
+// }, [setArticles, topic]);
+
+// value={topic}
+// 					onChange={(e) => {
+// 						setTopic(e.target.value);
+// 					}}
