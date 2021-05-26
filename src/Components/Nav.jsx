@@ -7,7 +7,7 @@ const Nav = () => {
 				<Link to='/topics'>Topics </Link>
 				<Link to='/articles'>Articles </Link>
 
-				<Link to='/Users'>Switch Account </Link>
+				<Link to='/Users'>Login</Link>
 			</div>
 		</nav>
 	);

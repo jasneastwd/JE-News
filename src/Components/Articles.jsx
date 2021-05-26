@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getArticles } from '../Utils/api';
+import Votes from '../Components/Votes.jsx';
 
 const Articles = () => {
 	const [articles, setArticles] = useState([]);
@@ -53,22 +54,23 @@ const Articles = () => {
 				</form>
 			</div>
 			<ul className='each-article'>
-				{articles.map(({ article_id, title, body, topic, created_at }) => {
-					return (
-						<li key={article_id} className='articles-list'>
-							<Link to={`/articles/${article_id}`}>
-								<h3>{title}</h3>
-							</Link>
-							<p>{body}</p>
-							<Link to={`/topics/${topic}`}>
-								<p>Topic: {topic}</p>
-							</Link>
-							<p>Posted: {created_at}</p>
-							<button className='myButton'>⬆️ Votes</button>
-							<button className='myButton'>⬇️ Votes</button>
-						</li>
-					);
-				})}
+				{articles.map(
+					({ article_id, title, body, topic, created_at, votes }) => {
+						return (
+							<li key={article_id} className='articles-list'>
+								<Link to={`/articles/${article_id}`}>
+									<h3>{title}</h3>
+								</Link>
+								<p>{body}</p>
+								<Link to={`/topics/${topic}`}>
+									<p>Topic: {topic}</p>
+								</Link>
+								<p>Posted: {created_at}</p>
+								<Votes votes={votes} username={article_id} />
+							</li>
+						);
+					}
+				)}
 			</ul>
 		</main>
 	);

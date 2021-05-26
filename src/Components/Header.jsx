@@ -10,7 +10,8 @@ const Header = () => {
 				<Link to='/'>Fake News </Link>
 			</h1>
 			<Link to={`/Users/${user.username}`}>
-				<img src={user.avatar_url} alt={user.username} className='nav-img' />
+				<img src={user.avatar_url} alt={user.username} className='nav-img' />{' '}
+				{user.username}
 			</Link>
 		</header>
 	);

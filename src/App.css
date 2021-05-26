@@ -73,7 +73,8 @@ img {
 
 .post-topic-form,
 .post-article-form,
-.select-dropdowns {
+.select-dropdowns,
+.post-comment-form {
 	background-color: cornsilk;
 	text-align: right;
 }

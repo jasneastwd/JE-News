@@ -36,3 +36,19 @@ export const getCommentsById = async (article_id) => {
 	const { data } = await newsApi.get(`/articles/${article_id}/comments`);
 	return data.comments;
 };
+
+export const postComment = async (newComment) => {
+	const { data } = await newsApi.post(
+		`/articles/${newComment.article_id}/comments`,
+		newComment
+	);
+	console.log(data);
+	return data.comments;
+};
+
+export const patchArticleVotes = async (article_id, increment) => {
+	const { data } = await newsApi.patch(`/articles/${article_id}`, {
+		inc_votes: increment,
+	});
+	return data.article;
+};

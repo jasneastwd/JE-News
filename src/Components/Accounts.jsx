@@ -1,11 +1,12 @@
 import { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { UserContext } from '../contexts/User';
 import * as api from '../Utils/api';
 
 const Accounts = () => {
 	const [users, setUsers] = useState([]);
 	const { setUser } = useContext(UserContext);
+	const history = useHistory();
 
 	useEffect(() => {
 		api.getUsers().then((usersFromApi) => {
@@ -15,6 +16,7 @@ const Accounts = () => {
 
 	const logIn = (user) => {
 		setUser(user);
+		history.push(`/`);
 	};
 	return (
 		<main className='Users'>
@@ -24,12 +26,10 @@ const Accounts = () => {
 					return (
 						<li key={user.username} className='users-list '>
 							<h2>Username: {user.username}</h2>
-							<Link to={`users/${user.username}`}>
-								<img src={user.avatar_url} alt={user.username}></img>
-								<button className='myButton' onClick={() => logIn(user)}>
-									Set User
-								</button>
-							</Link>
+							<img src={user.avatar_url} alt={user.username}></img>
+							<button className='myButton' onClick={() => logIn(user)}>
+								Choose User
+							</button>
 						</li>
 					);
 				})}

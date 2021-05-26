@@ -15,8 +15,9 @@ import { UserContext } from './contexts/User';
 
 function App() {
 	const [user, setUser] = useState({
-		username: '',
-		avatar_url: '',
+		username: 'guest',
+		avatar_url:
+			'https://images.macrumors.com/t/CynyMmV320sxD-tHY9kdnlFNnBc=/400x0/filters:quality(90)/article-new/2019/04/guest-user-250x250.jpg?lossy',
 	});
 
 	return (

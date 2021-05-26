@@ -18,7 +18,7 @@ const Account = () => {
 			<img src={account.avatar_url} alt={account.username}></img>
 			<p>Name: {account.name}</p>
 			<Link to='/Users'>
-				<button className='myButton'>Switch User</button>
+				<button className='myButton'>Back to Users</button>
 			</Link>
 		</main>
 	);
