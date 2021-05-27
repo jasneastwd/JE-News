@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { getArticles, postArticle } from '../Utils/api';
+import { getArticles, postArticle, getArticlesByTopic } from '../Utils/api';
 import Votes from '../Components/Votes.jsx';
 import { UserContext } from '../contexts/User';
 
@@ -18,12 +18,21 @@ const Articles = () => {
 	const [submitted, setSubmitted] = useState(false);
 	const [sortOrder, setSortOrder] = useState('ASC');
 	const [sortProperty, setSortProperty] = useState('title');
+	const [filter, setFilter] = useState('');
 
 	useEffect(() => {
-		getArticles({ sortOrder, sortProperty }).then((articles) => {
-			setArticles(articles);
-		});
-	}, [setArticles, sortOrder, sortProperty]);
+		if (filter === 'show-all') {
+			getArticles({ sortOrder, sortProperty }).then((articles) => {
+				setArticles(articles);
+			});
+		} else {
+			getArticlesByTopic({ filter, sortOrder, sortProperty }).then(
+				(articles) => {
+					setArticles(articles);
+				}
+			);
+		}
+	}, [setArticles, sortOrder, sortProperty, filter]);
 
 	const addArticle = (e) => {
 		e.preventDefault();
@@ -96,6 +105,21 @@ const Articles = () => {
 
 			<div className='select-dropdowns'>
 				<h2>All Articles</h2>
+				<form>
+					<label>Filter by:</label>
+					<select
+						className='dropdown'
+						value={filter}
+						onChange={(event) => {
+							setFilter(event.target.value);
+						}}
+					>
+						<option value='show-all'>Show all</option>
+						<option value='coding'>Coding</option>
+						<option value='football'>Football</option>
+						<option value='cooking'>Cooking</option>
+					</select>
+				</form>
 				<p>
 					Sorted by: {sortProperty}{' '}
 					{sortOrder === 'ASC' ? 'Ascending' : 'Descending'}
