@@ -1,28 +1,73 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getTopics } from '../Utils/api';
+import { Link, useHistory } from 'react-router-dom';
+import { getTopics, postTopic } from '../Utils/api';
 
 const Topics = () => {
+	const history = useHistory();
+	const emptyTopic = {
+		slug: '',
+		description: '',
+	};
 	const [topics, setTopics] = useState([]);
-
+	const [newTopic, setNewTopic] = useState(emptyTopic);
+	const [submitted, setSubmitted] = useState(false);
 	useEffect(() => {
 		getTopics().then((topicsFromApi) => {
 			setTopics(topicsFromApi);
 		});
 	}, []);
+
+	const addTopic = (e) => {
+		e.preventDefault();
+		postTopic(newTopic).then(() => {
+			setSubmitted(true);
+			alert('topic posted!');
+			setTopics(emptyTopic);
+		});
+	};
+	if (submitted) {
+		history.push(`/`);
+	}
+
 	return (
 		<main className='Topics'>
 			<div className='post-topic-form'>
 				<h2>Post a Topic:</h2>
-				<form>
-					<label>Topic: </label>
-					<input placeholder='state topics dropdown'></input>
+				<form onSubmit={addTopic}>
+					<label htmlFor='topic-slug'>Topic: </label>
+					<input
+						type='text'
+						name='topic-slug'
+						value={newTopic.slug}
+						required
+						onChange={(e) => {
+							setNewTopic((topic) => {
+								return {
+									...topic,
+									slug: e.target.value,
+								};
+							});
+						}}
+					></input>
 					<br />
-					<label>Body: </label>
-					<input></input>
+					<label htmlFor='topic-description'>Body: </label>
+					<input
+						type='text'
+						name='topic-description'
+						value={newTopic.description}
+						required
+						onChange={(e) => {
+							setNewTopic((topic) => {
+								return {
+									...topic,
+									description: e.target.value,
+								};
+							});
+						}}
+					></input>
 					<br />
+					<button>Post topic!</button>
 				</form>
-				<button>Post topic!</button>
 			</div>
 			<h2>All Topics</h2>
 

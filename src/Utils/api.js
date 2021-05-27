@@ -14,6 +14,12 @@ export const getArticleById = async (article_id) => {
 	return data.article;
 };
 
+export const deleteArticleById = async (article_id) => {
+	await newsApi.delete(`/articles/${article_id}`).then(() => {
+		return alert('You have deleted the item!');
+	});
+};
+
 export const getTopics = async () => {
 	const { data } = await newsApi.get('/topics');
 	return data.topics;
@@ -28,6 +34,11 @@ export const getUsers = async () => {
 	const { data } = await newsApi.get(`/users`);
 	return data.users;
 };
+
+export const postUser = async (newUser) => {
+	const { data } = await newsApi.post(`/users`, newUser);
+	return data.users;
+};
 export const getAccountByUsername = async (username) => {
 	const { data } = await newsApi.get(`/users/${username}`);
 	return data.user;
@@ -37,13 +48,28 @@ export const getCommentsById = async (article_id) => {
 	return data.comments;
 };
 
+export const deleteCommentById = async (article_id, comment_id) => {
+	await newsApi
+		.delete(`/articles/${article_id}/comments/${comment_id}`)
+		.then(() => {
+			return alert('You have deleted the comment!');
+		});
+};
+
 export const postComment = async (newComment) => {
 	const { data } = await newsApi.post(
 		`/articles/${newComment.article_id}/comments`,
 		newComment
 	);
-	console.log(data);
 	return data.comments;
+};
+export const postTopic = async (newTopic) => {
+	const { data } = await newsApi.post(`/topics`, newTopic);
+	return data.topics;
+};
+export const postArticle = async (newArticle) => {
+	const { data } = await newsApi.post(`/articles`, newArticle);
+	return data.articles;
 };
 
 export const patchArticleVotes = async (article_id, increment) => {
@@ -51,4 +77,9 @@ export const patchArticleVotes = async (article_id, increment) => {
 		inc_votes: increment,
 	});
 	return data.article;
+};
+
+export const patchUser = async (account) => {
+	const { data } = await newsApi.patch(`/Users/${account.username}`, account);
+	return data.user;
 };

@@ -19,7 +19,7 @@ const Votes = ({ votes, username }) => {
 	};
 
 	const incDisabled = votesChange > 0;
-	// NEED TO FIGURE OUT HOW TO DISABLE DOWN VOTE BUTTON
+	// NEED TO FIGURE OUT HOW TO DISABLE DOWN VOTE
 
 	return (
 		<section>

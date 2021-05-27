@@ -1,36 +1,95 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getArticles } from '../Utils/api';
+import { useEffect, useState, useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { getArticles, postArticle } from '../Utils/api';
 import Votes from '../Components/Votes.jsx';
+import { UserContext } from '../contexts/User';
 
 const Articles = () => {
+	const history = useHistory();
+	const { user } = useContext(UserContext);
 	const [articles, setArticles] = useState([]);
+	const emptyArticle = {
+		topic: '',
+		title: '',
+		body: '',
+		author: `${user.username}`,
+	};
+	const [newArticle, setNewArticle] = useState(emptyArticle);
+	const [submitted, setSubmitted] = useState(false);
 
 	useEffect(() => {
 		getArticles().then((articles) => {
 			setArticles(articles);
 		});
-	}, [setArticles]);
+	}, [setArticles, articles]);
+
+	const addArticle = (e) => {
+		e.preventDefault();
+		postArticle(newArticle).then(() => {
+			setSubmitted(true);
+			alert('article posted!');
+			setNewArticle(emptyArticle);
+		});
+	};
+	if (submitted) {
+		history.push(`/articles`);
+	}
 
 	return (
 		<main className='Articles'>
 			<div className='post-article-form'>
 				<h2>Post an Article:</h2>
-				<form>
-					<label>Topic: </label>
-					<input placeholder='state topics dropdown'></input>
+				<form onSubmit={addArticle}>
+					<label htmlFor='article-topic'>Topic: </label>
+					<input
+						type='text'
+						name='article-topic'
+						required
+						value={newArticle.topic}
+						onChange={(e) => {
+							setNewArticle((emptyArticle) => {
+								return {
+									...emptyArticle,
+									topic: e.target.value,
+								};
+							});
+						}}
+					></input>
 					<br />
-					<label>Article Title: </label>
-					<input placeholder='free text'></input>
+					<label htmlFor='article-title'>Article Title: </label>
+					<input
+						type='text'
+						name='article-title'
+						required
+						value={newArticle.title}
+						onChange={(e) => {
+							setNewArticle((emptyArticle) => {
+								return {
+									...emptyArticle,
+									title: e.target.value,
+								};
+							});
+						}}
+					></input>
 					<br />
-					<label>Body: </label>
-					<input></input>
+					<label htmlFor='article-body'>Body: </label>
+					<input
+						type='text'
+						name='article-body'
+						required
+						value={newArticle.body}
+						onChange={(e) => {
+							setNewArticle((emptyArticle) => {
+								return {
+									...emptyArticle,
+									body: e.target.value,
+								};
+							});
+						}}
+					></input>
 					<br />
-					<label>Author: </label>
-					<input placeholder='user username'></input>
-					<br />
+					<button className='myButton'>Post article!!</button>
 				</form>
-				<button>Post topic!</button>
 			</div>
 			<div className='select-dropdowns'>
 				<h2>All Articles</h2>
@@ -62,7 +121,7 @@ const Articles = () => {
 									<h3>{title}</h3>
 								</Link>
 								<p>{body}</p>
-								<Link to={`/topics/${topic}`}>
+								<Link to={`/articles?${topic}`}>
 									<p>Topic: {topic}</p>
 								</Link>
 								<p>Posted: {created_at}</p>

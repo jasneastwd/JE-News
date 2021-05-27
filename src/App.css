@@ -74,7 +74,8 @@ img {
 .post-topic-form,
 .post-article-form,
 .select-dropdowns,
-.post-comment-form {
+.post-comment-form,
+.post-user-form {
 	background-color: cornsilk;
 	text-align: right;
 }
@@ -140,12 +141,28 @@ img {
 	text-decoration: none;
 	text-shadow: -1px 1px 0px #2b665e;
 }
-.myButton:hover {
+.myButton:hover,
+.myButton-delete:hover {
 	background-color: #6c7c7c;
 }
-.myButton:active {
+.myButton:active,
+.myButton-delete:active {
 	position: relative;
 	top: 1px;
+}
+
+.myButton-delete {
+	background-color: red;
+	border-radius: 25px;
+	border: 1px solid #566963;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Verdana;
+	font-size: 16px;
+	padding: 1% 1.5%;
+	text-decoration: none;
+	text-shadow: -1px 1px 0px #2b665e;
 }
 
 /* 
