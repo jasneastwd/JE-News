@@ -118,6 +118,10 @@ const Articles = () => {
 						<option value='coding'>Coding</option>
 						<option value='football'>Football</option>
 						<option value='cooking'>Cooking</option>
+						<option value='Drag Queens'>Drag Queens</option>
+						<option value='Weather'>Weather</option>
+						<option value='Dogs'>Dogs</option>
+						<option value='Cats such'>Cats suck</option>
 					</select>
 				</form>
 				<p>
