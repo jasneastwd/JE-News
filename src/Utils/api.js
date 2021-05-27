@@ -4,14 +4,21 @@ const newsApi = axios.create({
 	baseURL: 'https://jasneastwd-nc-news.herokuapp.com/api',
 });
 
-export const getArticles = async () => {
-	const { data } = await newsApi.get('/articles');
+export const getArticles = async ({ sortOrder, sortProperty }) => {
+	const { data } = await newsApi.get('/articles', {
+		params: { order: sortOrder, sort_by: sortProperty },
+	});
 	return data.articles;
 };
 
 export const getArticleById = async (article_id) => {
 	const { data } = await newsApi.get(`/articles/${article_id}`);
 	return data.article;
+};
+
+export const getArticlesByTopic = async (filter) => {
+	const { data } = await newsApi.get(`/articles?topic=${filter}`);
+	return data.articles;
 };
 
 export const deleteArticleById = async (article_id) => {

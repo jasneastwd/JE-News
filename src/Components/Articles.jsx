@@ -16,12 +16,14 @@ const Articles = () => {
 	};
 	const [newArticle, setNewArticle] = useState(emptyArticle);
 	const [submitted, setSubmitted] = useState(false);
+	const [sortOrder, setSortOrder] = useState('ASC');
+	const [sortProperty, setSortProperty] = useState('title');
 
 	useEffect(() => {
-		getArticles().then((articles) => {
+		getArticles({ sortOrder, sortProperty }).then((articles) => {
 			setArticles(articles);
 		});
-	}, [setArticles, articles]);
+	}, [setArticles, sortOrder, sortProperty]);
 
 	const addArticle = (e) => {
 		e.preventDefault();
@@ -91,9 +93,29 @@ const Articles = () => {
 					<button className='myButton'>Post article!!</button>
 				</form>
 			</div>
+
 			<div className='select-dropdowns'>
 				<h2>All Articles</h2>
-				<form>
+				<p>
+					Sorted by: {sortProperty}{' '}
+					{sortOrder === 'ASC' ? 'Ascending' : 'Descending'}
+				</p>
+				<button className='myButton' onClick={() => setSortProperty('title')}>
+					Title
+				</button>
+				<button className='myButton' onClick={() => setSortProperty('topic')}>
+					Topic
+				</button>
+				<button className='myButton' onClick={() => setSortProperty('votes')}>
+					Votes
+				</button>
+				<button className='myButton' onClick={() => setSortOrder('ASC')}>
+					Ascending
+				</button>
+				<button className='myButton' onClick={() => setSortOrder('DESC')}>
+					Descending
+				</button>
+				{/* <form>
 					<label className='select-label'>Filter:</label>
 					<select className='select-field'>
 						<option value='show-all'>Show All</option>
@@ -101,17 +123,18 @@ const Articles = () => {
 						<option value='football'>Football</option>
 						<option value='cooking'>Cooking</option>
 					</select>
-				</form>
+				</form> */}
 
-				<form>
+				{/* <form>
 					<label className='select-label'>Order by:</label>
 					<select className='select-field'>
 						<option value='title'>Title</option>
 						<option value='votes'>Votes</option>
 						<option value='created_at'>Date</option>
 					</select>
-				</form>
+				</form> */}
 			</div>
+
 			<ul className='each-article'>
 				{articles.map(
 					({ article_id, title, body, topic, created_at, votes }) => {
@@ -120,7 +143,7 @@ const Articles = () => {
 								<Link to={`/articles/${article_id}`}>
 									<h3>{title}</h3>
 								</Link>
-								<p>{body}</p>
+
 								<Link to={`/articles?${topic}`}>
 									<p>Topic: {topic}</p>
 								</Link>
