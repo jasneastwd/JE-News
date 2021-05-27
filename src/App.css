@@ -1,6 +1,9 @@
 * {
 	font-family: 'Overpass Mono', monospace;
 }
+main {
+	padding: 0;
+}
 
 /* p {
 	color: grey;
@@ -10,6 +13,11 @@
 	position: relative;
 	word-wrap: break-word;
 } */
+
+a {
+	color: black;
+	text-decoration: none;
+}
 
 li {
 	list-style-type: none;
@@ -28,23 +36,32 @@ img {
 	border-radius: 25px;
 }
 
+.nav-links {
+	border-radius: 25px;
+	margin: 10%;
+	padding: 1%;
+}
+
 .App {
 	text-align: center;
-	background-color: lightgrey;
+	background-color: #ffffff;
 }
 
 .Header {
-	background-color: darksalmon;
+	background-color: #e5e5e5;
 	padding: 0.2em;
+	border-radius: 25px;
+	margin: 1em 0 1em 0;
 }
 
 .Nav {
-	background-color: cornflowerblue;
+	background-color: #fca311;
 	padding: 1em;
+	border-radius: 25px;
 }
 
 .home-body {
-	background-color: lightpink;
+	background-color: #ffffff;
 	padding: 5em 0 5em 0;
 }
 
@@ -52,9 +69,32 @@ img {
 .Topics,
 .Users,
 .Comments {
-	background-color: khaki;
+	background-color: #ffffff;
 	text-align: left;
-	padding: 0.5em;
+	/* padding: 0em 0.5em 0em 0.5em; */
+}
+
+h2 {
+	text-align: center;
+}
+
+.article-body {
+	background-color: #ffffff;
+	padding: 5px;
+	border-radius: 25px;
+}
+.outer-article {
+	background-color: #14213d;
+	padding: 15px;
+	border-radius: 25px;
+}
+
+.select-dropdowns,
+.post-article-form,
+.post-topic-form {
+	border-radius: 25px;
+	padding: 1em;
+	margin-top: 1em;
 }
 
 .select-label {
@@ -64,37 +104,37 @@ img {
 	padding: 0.5em;
 }
 
-.articles-list {
-	background-color: cornsilk;
-	padding: 1em;
-	border-radius: 25px;
-	margin-bottom: 1em;
-}
-
 .post-topic-form,
 .post-article-form,
 .select-dropdowns,
 .post-comment-form,
 .post-user-form {
-	background-color: cornsilk;
+	background-color: #e5e5e5;
 	text-align: right;
 }
 
+.articles-list {
+	background-color: #ffffff;
+	padding: 1em;
+	border-radius: 25px;
+	margin-bottom: 1em;
+}
+
 .topics-list {
-	background-color: cornsilk;
+	background-color: #ffffff;
 	padding: 0.5em;
 	border-radius: 25px;
 	margin-bottom: 1em;
 }
 
 .users-list {
-	background-color: cornsilk;
+	background-color: #ffffff;
 	padding: 0.5em;
 	border-radius: 25px;
 	margin-bottom: 1em;
 }
 .comments-list {
-	background-color: cornsilk;
+	background-color: #ffffff;
 	padding: 0.5em;
 	border-radius: 25px;
 	margin-bottom: 1em;
@@ -105,7 +145,7 @@ img {
 .each-user,
 .each-comment {
 	padding: 1em;
-	background-color: darkseagreen;
+	background-color: #14213d;
 	list-style-type: none;
 	border-radius: 25px;
 }
@@ -115,23 +155,23 @@ img {
 }
 
 .individual-article {
-	padding: 1em;
-	background-color: bisque;
+	padding: 2em;
+	background-color: #ffffff;
 	list-style-type: none;
 	border-radius: 25px;
 }
 
 .individual-user {
 	padding: 1em;
-	background-color: bisque;
+	background-color: #e5e5e5;
 	list-style-type: none;
 	border-radius: 25px;
 }
 
 .myButton {
-	background-color: orange;
+	background-color: #fca311;
 	border-radius: 25px;
-	border: 1px solid #566963;
+	border: 1px solid black;
 	display: inline-block;
 	cursor: pointer;
 	color: #ffffff;
@@ -139,12 +179,15 @@ img {
 	font-size: 16px;
 	padding: 1% 1.5%;
 	text-decoration: none;
-	text-shadow: -1px 1px 0px #2b665e;
+	text-shadow: -1px 1px 0px #14213d;
 }
-.myButton:hover,
+.myButton:hover {
+	background-color: #14213d;
+}
 .myButton-delete:hover {
-	background-color: #6c7c7c;
+	background-color: #fca311;
 }
+
 .myButton:active,
 .myButton-delete:active {
 	position: relative;
@@ -152,7 +195,7 @@ img {
 }
 
 .myButton-delete {
-	background-color: red;
+	background-color: #14213d;
 	border-radius: 25px;
 	border: 1px solid #566963;
 	display: inline-block;

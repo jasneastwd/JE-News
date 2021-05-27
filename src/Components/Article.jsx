@@ -63,15 +63,19 @@ const Article = () => {
 				>
 					Delete Article
 				</button>
-				<h2>{article.title}</h2>
-				<p> {article.body}</p>
-				<p>Author: {article.author}</p>
-				<p>Created at: {article.created_at}</p>
-				<p>Topic: {article.topic}</p>
-				<Votes votes={article.votes} username={article.article_id} />
-				<Link to={`/articles/${article.article_id}/comments`}>
-					<button className='myButton'>Read Comments</button>
-				</Link>
+				<section className='outer-article'>
+					<section className='article-body'>
+						<h2>{article.title}</h2>
+						<p> {article.body}</p>
+						<p>Author: {article.author}</p>
+						<p>Created at: {article.created_at}</p>
+						<p>Topic: {article.topic}</p>
+						<Votes votes={article.votes} username={article.article_id} />
+						<Link to={`/articles/${article.article_id}/comments`}>
+							<button className='myButton'>Read Comments</button>
+						</Link>
+					</section>
+				</section>
 			</main>
 			<div>
 				<div className='post-comment-form'>

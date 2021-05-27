@@ -4,10 +4,16 @@ const Nav = () => {
 	return (
 		<nav className='Nav'>
 			<div>
-				<Link to='/topics'>Topics </Link>
-				<Link to='/articles'>Articles </Link>
+				<Link to='/topics' className='nav-links'>
+					Topics{' '}
+				</Link>
+				<Link to='/articles' className='nav-links'>
+					Articles{' '}
+				</Link>
 
-				<Link to='/Users'>Login</Link>
+				<Link to='/Users' className='nav-links'>
+					Login
+				</Link>
 			</div>
 		</nav>
 	);

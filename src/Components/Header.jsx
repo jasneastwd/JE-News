@@ -6,8 +6,8 @@ const Header = () => {
 	const { user } = useContext(UserContext);
 	return (
 		<header className='Header'>
-			<h1>
-				<Link to='/'>Fake News </Link>
+			<h1 className='app-heading'>
+				<Link to='/'>Read-it </Link>
 			</h1>
 			<Link to={`/Users/${user.username}`}>
 				<img src={user.avatar_url} alt={user.username} className='nav-img' />{' '}

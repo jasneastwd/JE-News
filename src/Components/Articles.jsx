@@ -49,7 +49,7 @@ const Articles = () => {
 	return (
 		<main className='Articles'>
 			<div className='post-article-form'>
-				<h2>Post an Article:</h2>
+				<h2 className='article-form-headings'>Post an Article:</h2>
 				<form onSubmit={addArticle}>
 					<label htmlFor='article-topic'>Topic: </label>
 					<input

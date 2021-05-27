@@ -19,7 +19,7 @@ const Votes = ({ votes, username }) => {
 	};
 
 	const incDisabled = votesChange > 0;
-	// NEED TO FIGURE OUT HOW TO DISABLE DOWN VOTE
+	const decDisabled = votesChange < 0;
 
 	return (
 		<section>
@@ -27,7 +27,7 @@ const Votes = ({ votes, username }) => {
 			<button disabled={incDisabled} onClick={incVotes} className='myButton'>
 				⬆️ Votes
 			</button>
-			<button onClick={decVotes} className='myButton'>
+			<button disabled={decDisabled} onClick={decVotes} className='myButton'>
 				⬇️ Votes
 			</button>
 		</section>
