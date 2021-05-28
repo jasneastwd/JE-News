@@ -7,6 +7,7 @@ import Topics from './Components/Topics.jsx';
 import Articles from './Components/Articles.jsx';
 import Article from './Components/Article.jsx';
 import Comments from './Components/Comments.jsx';
+import Footer from './Components/Footer.jsx';
 
 import Accounts from './Components/Accounts.jsx';
 import Account from './Components/Account.jsx';
@@ -24,6 +25,7 @@ function App() {
 			<div className='App'>
 				<Header />
 				<Nav />
+
 				<Switch>
 					<Route exact path='/'>
 						<Home />
@@ -47,6 +49,7 @@ function App() {
 						<Account />
 					</Route>
 				</Switch>
+				<Footer />
 			</div>
 		</UserContext.Provider>
 	);

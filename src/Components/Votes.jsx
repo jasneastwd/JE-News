@@ -25,10 +25,10 @@ const Votes = ({ votes, username }) => {
 		<section>
 			<p>Votes: {votes + votesChange}</p>
 			<button disabled={incDisabled} onClick={incVotes} className='myButton'>
-				⬆️ Votes
+				⬆ Votes
 			</button>
 			<button disabled={decDisabled} onClick={decVotes} className='myButton'>
-				⬇️ Votes
+				⬇ Votes
 			</button>
 		</section>
 	);

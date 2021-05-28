@@ -14,7 +14,6 @@ const Account = () => {
 		name: `${account.name}`,
 		avatar_url: ``,
 	};
-	console.log(patchURL);
 
 	const [newAvatar, setNewAvatar] = useState(patchURL);
 
@@ -41,9 +40,11 @@ const Account = () => {
 		<main className='individual-user'>
 			<h2>Username: {account.username}</h2>
 			<img src={account.avatar_url} alt={account.username}></img>
+			<p className='name-p'>Name: {account.name}</p>
 			<form onSubmit={updateUser}>
 				<label htmlFor='avatar-patch'>Change Avatar</label>
 				<input
+					className='post-box'
 					type='url'
 					name='avatar-patch'
 					value={newAvatar.avatar_url}
@@ -54,10 +55,11 @@ const Account = () => {
 							return { ...patchURL, avatar_url: e.target.value };
 						});
 					}}
-				></input>
-				<button className='myButton'>Update avatar!</button>
+				></input>{' '}
+				<br />
+				<button className='myButton'>Update Avatar</button>
 			</form>
-			<p>Name: {account.name}</p>
+
 			<Link to='/Users'>
 				<button className='myButton'>Back to Users</button>
 			</Link>

@@ -38,7 +38,7 @@ const Articles = () => {
 		e.preventDefault();
 		postArticle(newArticle).then(() => {
 			setSubmitted(true);
-			alert('article posted!');
+			<alert> article posted!</alert>;
 			setNewArticle(emptyArticle);
 		});
 	};
@@ -53,6 +53,7 @@ const Articles = () => {
 				<form onSubmit={addArticle}>
 					<label htmlFor='article-topic'>Topic: </label>
 					<input
+						className='post-box'
 						type='text'
 						name='article-topic'
 						required
@@ -67,8 +68,9 @@ const Articles = () => {
 						}}
 					></input>
 					<br />
-					<label htmlFor='article-title'>Article Title: </label>
+					<label htmlFor='article-title'>Title: </label>
 					<input
+						className='post-box'
 						type='text'
 						name='article-title'
 						required
@@ -85,6 +87,7 @@ const Articles = () => {
 					<br />
 					<label htmlFor='article-body'>Body: </label>
 					<input
+						className='post-box-bigger'
 						type='text'
 						name='article-body'
 						required
@@ -99,7 +102,7 @@ const Articles = () => {
 						}}
 					></input>
 					<br />
-					<button className='myButton'>Post article!!</button>
+					<button className='myButton'>Post article</button>
 				</form>
 			</div>
 
@@ -137,11 +140,15 @@ const Articles = () => {
 				<button className='myButton' onClick={() => setSortProperty('votes')}>
 					Votes
 				</button>
-				<button className='myButton' onClick={() => setSortOrder('ASC')}>
-					Ascending
+				<br />
+				<button className='myButton-arrows' onClick={() => setSortOrder('ASC')}>
+					⬆
 				</button>
-				<button className='myButton' onClick={() => setSortOrder('DESC')}>
-					Descending
+				<button
+					className='myButton-arrows'
+					onClick={() => setSortOrder('DESC')}
+				>
+					⬇
 				</button>
 				{/* <form>
 					<label className='select-label'>Filter:</label>
@@ -164,23 +171,21 @@ const Articles = () => {
 			</div>
 
 			<ul className='each-article'>
-				{articles.map(
-					({ article_id, title, body, topic, created_at, votes }) => {
-						return (
-							<li key={article_id} className='articles-list'>
-								<Link to={`/articles/${article_id}`}>
-									<h3>{title}</h3>
-								</Link>
+				{articles.map(({ article_id, title, topic, created_at, votes }) => {
+					return (
+						<li key={article_id} className='articles-list'>
+							<Link to={`/articles/${article_id}`}>
+								<h3>{title}</h3>
+							</Link>
 
-								<Link to={`/articles?${topic}`}>
-									<p>Topic: {topic}</p>
-								</Link>
-								<p>Posted: {created_at}</p>
-								<Votes votes={votes} username={article_id} />
-							</li>
-						);
-					}
-				)}
+							<Link to={`/articles?${topic}`}>
+								<p>Topic: {topic}</p>
+							</Link>
+							<p>Posted: {created_at}</p>
+							<Votes votes={votes} username={article_id} />
+						</li>
+					);
+				})}
 			</ul>
 		</main>
 	);

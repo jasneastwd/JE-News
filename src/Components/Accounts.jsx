@@ -45,6 +45,7 @@ const Accounts = () => {
 				<form onSubmit={addUser}>
 					<label htmlFor='user-username'>Username: </label>
 					<input
+						className='post-box'
 						type='text'
 						name='user-username'
 						value={newUser.username}
@@ -61,6 +62,7 @@ const Accounts = () => {
 					<br />
 					<label htmlFor='user-name'>Name: </label>
 					<input
+						className='post-box'
 						type='text'
 						name='user-name'
 						value={newUser.name}
@@ -75,12 +77,14 @@ const Accounts = () => {
 						}}
 					></input>
 					<br />
-					<label htmlFor='user-avatar-url'>avatar_url: </label>
+					<label htmlFor='user-avatar-url'>Photo: </label>
 					<input
+						className='post-box'
 						type='text'
 						name='user-avatar-url'
 						value={newUser.avatar_url}
 						required
+						placeholder='Paste URL here'
 						onChange={(e) => {
 							setNewUser((emptyUser) => {
 								return {
@@ -91,25 +95,24 @@ const Accounts = () => {
 						}}
 					></input>
 					<br />
-					<button>Create User!</button>
+					<button className='myButton'>Create User</button>
 				</form>
 			</section>
-			<main>
-				<h2>Choose a user:</h2>
-				<ul className='each-user'>
-					{users.map((user) => {
-						return (
-							<li key={user.username} className='users-list '>
-								<h2>Username: {user.username}</h2>
-								<img src={user.avatar_url} alt={user.username}></img>
-								<button className='myButton' onClick={() => logIn(user)}>
-									Choose User
-								</button>
-							</li>
-						);
-					})}
-				</ul>
-			</main>
+
+			<h2 className='section-heading'>Existing users:</h2>
+			<ul className='each-user'>
+				{users.map((user) => {
+					return (
+						<li key={user.username} className='users-list '>
+							<h2>Username: {user.username}</h2>
+							<img src={user.avatar_url} alt={user.username}></img>
+							<button className='myButton' onClick={() => logIn(user)}>
+								Choose User
+							</button>
+						</li>
+					);
+				})}
+			</ul>
 		</div>
 	);
 };

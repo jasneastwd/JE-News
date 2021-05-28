@@ -55,14 +55,7 @@ const Article = () => {
 				<Link to={`/articles`}>
 					<button className='myButton'>Back to Articles</button>
 				</Link>
-				<button
-					className='myButton-delete'
-					onClick={() => {
-						deleteArticle(article);
-					}}
-				>
-					Delete Article
-				</button>
+
 				<section className='outer-article'>
 					<section className='article-body'>
 						<h2>{article.title}</h2>
@@ -76,14 +69,25 @@ const Article = () => {
 						</Link>
 					</section>
 				</section>
+				<button
+					className='myButton-delete'
+					onClick={() => {
+						deleteArticle(article);
+					}}
+				>
+					Delete Article
+				</button>
 			</main>
 			<div>
 				<div className='post-comment-form'>
 					<form onSubmit={addComment}>
-						<label htmlFor='comment-body'>Leave a comment: </label>
+						<label htmlFor='comment-body' className='comment-box-label'>
+							Leave a comment:{' '}
+						</label>
 						<input
 							type='text'
 							name='comment-body'
+							className='post-box-comment'
 							value={comment.body}
 							required
 							onChange={(e) => {
@@ -96,7 +100,7 @@ const Article = () => {
 							}}
 						></input>
 						<br />
-						<button className='myButton'>Post!</button>
+						<button className='myButton'>Post</button>
 					</form>
 				</div>
 			</div>

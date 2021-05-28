@@ -36,6 +36,7 @@ const Topics = () => {
 				<form onSubmit={addTopic}>
 					<label htmlFor='topic-slug'>Topic: </label>
 					<input
+						className='post-box'
 						type='text'
 						name='topic-slug'
 						value={newTopic.slug}
@@ -52,6 +53,7 @@ const Topics = () => {
 					<br />
 					<label htmlFor='topic-description'>Body: </label>
 					<input
+						className='post-box-big'
 						type='text'
 						name='topic-description'
 						value={newTopic.description}
@@ -66,7 +68,7 @@ const Topics = () => {
 						}}
 					></input>
 					<br />
-					<button>Post topic!</button>
+					<button className='myButton'>Post topic</button>
 				</form>
 			</div>
 			<h2>All Topics</h2>
@@ -75,9 +77,9 @@ const Topics = () => {
 				{topics.map(({ slug, description }) => {
 					return (
 						<li key={slug} className='topics-list'>
-							<h2>
+							<h3>
 								<Link to={`/articles?topic=${slug}`}>{slug}</Link>
-							</h2>
+							</h3>
 							<p>About: {description}</p>
 						</li>
 					);
