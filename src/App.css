@@ -126,6 +126,7 @@ img {
 
 h2 {
 	text-align: center;
+	margin: 0.5em;
 }
 
 .article-body {
@@ -144,6 +145,10 @@ h2 {
 	margin-bottom: 1em;
 	background-color: #3f4045;
 	border-radius: 25px;
+}
+
+.dropdown {
+	width: 40%;
 }
 
 .select-dropdowns,
@@ -254,7 +259,7 @@ h2 {
 	color: #ffffff;
 	font-family: Verdana;
 	font-size: 16px;
-	padding: 1.5% 1.5%;
+	padding: 0.3em 0.3em;
 	text-decoration: none;
 	text-shadow: -1px 1px 0px #14213d;
 	margin: 0.5em 0.25em 0.5em 0.25em;
