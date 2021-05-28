@@ -14,7 +14,6 @@ const Accounts = () => {
 		avatar_url: ``,
 	};
 	const [newUser, setNewUser] = useState(emptyUser);
-	const [submitted, setSubmitted] = useState(false);
 
 	useEffect(() => {
 		api.getUsers().then((usersFromApi) => {
@@ -25,14 +24,11 @@ const Accounts = () => {
 	const addUser = (e) => {
 		e.preventDefault();
 		api.postUser(newUser).then(() => {
-			setSubmitted(true);
 			alert('user added!');
 			setNewUser(emptyUser);
+			history.push(`/Users`);
 		});
 	};
-	if (submitted) {
-		history.push(`/Users`);
-	}
 
 	const logIn = (user) => {
 		setUser(user);
@@ -43,11 +39,13 @@ const Accounts = () => {
 			<section className='post-user-form'>
 				<h2>Create a user:</h2>
 				<form onSubmit={addUser}>
-					<label htmlFor='user-username'>Username: </label>
+					<label htmlFor='user-username' className='post-user-label'>
+						Username:{' '}
+					</label>
 					<input
 						className='post-box'
 						type='text'
-						name='user-username'
+						id='user-username'
 						value={newUser.username}
 						required
 						onChange={(e) => {
@@ -60,11 +58,13 @@ const Accounts = () => {
 						}}
 					></input>
 					<br />
-					<label htmlFor='user-name'>Name: </label>
+					<label htmlFor='user-name' className='post-user-label'>
+						Name:{' '}
+					</label>
 					<input
 						className='post-box'
 						type='text'
-						name='user-name'
+						id='user-name'
 						value={newUser.name}
 						required
 						onChange={(e) => {
@@ -77,11 +77,13 @@ const Accounts = () => {
 						}}
 					></input>
 					<br />
-					<label htmlFor='user-avatar-url'>Photo: </label>
+					<label htmlFor='user-avatar-url' className='post-user-label'>
+						Photo:{' '}
+					</label>
 					<input
 						className='post-box'
 						type='text'
-						name='user-avatar-url'
+						id='user-avatar-url'
 						value={newUser.avatar_url}
 						required
 						placeholder='Paste URL here'

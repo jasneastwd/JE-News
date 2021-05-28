@@ -3,10 +3,12 @@ import { Link, useHistory } from 'react-router-dom';
 import { getArticles, postArticle, getArticlesByTopic } from '../Utils/api';
 import Votes from '../Components/Votes.jsx';
 import { UserContext } from '../contexts/User';
+import { TopicContext } from '../contexts/Topic';
 
 const Articles = () => {
 	const history = useHistory();
 	const { user } = useContext(UserContext);
+	const { topics } = useContext(TopicContext);
 	const [articles, setArticles] = useState([]);
 	const emptyArticle = {
 		topic: '',
@@ -15,7 +17,7 @@ const Articles = () => {
 		author: `${user.username}`,
 	};
 	const [newArticle, setNewArticle] = useState(emptyArticle);
-	const [submitted, setSubmitted] = useState(false);
+
 	const [sortOrder, setSortOrder] = useState('ASC');
 	const [sortProperty, setSortProperty] = useState('title');
 	const [filter, setFilter] = useState('');
@@ -37,25 +39,24 @@ const Articles = () => {
 	const addArticle = (e) => {
 		e.preventDefault();
 		postArticle(newArticle).then(() => {
-			setSubmitted(true);
 			<alert> article posted!</alert>;
 			setNewArticle(emptyArticle);
+			history.push(`/articles`);
 		});
 	};
-	if (submitted) {
-		history.push(`/articles`);
-	}
 
 	return (
 		<main className='Articles'>
 			<div className='post-article-form'>
 				<h2 className='article-form-headings'>Post an Article:</h2>
 				<form onSubmit={addArticle}>
-					<label htmlFor='article-topic'>Topic: </label>
-					<input
-						className='post-box'
+					<label htmlFor='article-topic' className='post-article-label'>
+						Topic:{' '}
+					</label>
+					<select
+						className='select-post-box'
 						type='text'
-						name='article-topic'
+						id='article-topic'
 						required
 						value={newArticle.topic}
 						onChange={(e) => {
@@ -66,13 +67,23 @@ const Articles = () => {
 								};
 							});
 						}}
-					></input>
+					>
+						{topics.map(({ slug }) => {
+							return (
+								<option value={slug} key={slug}>
+									{slug}
+								</option>
+							);
+						})}
+					</select>
 					<br />
-					<label htmlFor='article-title'>Title: </label>
+					<label htmlFor='article-title' className='post-article-label'>
+						Title:{' '}
+					</label>
 					<input
 						className='post-box'
 						type='text'
-						name='article-title'
+						id='article-title'
 						required
 						value={newArticle.title}
 						onChange={(e) => {
@@ -85,11 +96,14 @@ const Articles = () => {
 						}}
 					></input>
 					<br />
-					<label htmlFor='article-body'>Body: </label>
-					<input
+					<label htmlFor='article-body' className='post-article-label'>
+						Body:{' '}
+					</label>
+					<textarea
+						rows='5'
 						className='post-box-bigger'
 						type='text'
-						name='article-body'
+						id='article-body'
 						required
 						value={newArticle.body}
 						onChange={(e) => {
@@ -100,7 +114,7 @@ const Articles = () => {
 								};
 							});
 						}}
-					></input>
+					></textarea>
 					<br />
 					<button className='myButton'>Post article</button>
 				</form>
@@ -109,7 +123,7 @@ const Articles = () => {
 			<div className='select-dropdowns'>
 				<h2>All Articles</h2>
 				<form>
-					<label>Filter by:</label>
+					<label>Filter by: </label>
 					<select
 						className='dropdown'
 						value={filter}
@@ -117,14 +131,13 @@ const Articles = () => {
 							setFilter(event.target.value);
 						}}
 					>
-						<option value='show-all'>Show all</option>
-						<option value='coding'>Coding</option>
-						<option value='football'>Football</option>
-						<option value='cooking'>Cooking</option>
-						<option value='Drag Queens'>Drag Queens</option>
-						<option value='Weather'>Weather</option>
-						<option value='Dogs'>Dogs</option>
-						<option value='Cats such'>Cats suck</option>
+						{topics.map(({ slug }) => {
+							return (
+								<option value={slug} key={slug}>
+									{slug}
+								</option>
+							);
+						})}
 					</select>
 				</form>
 				<p>
@@ -150,26 +163,7 @@ const Articles = () => {
 				>
 					⬇
 				</button>
-				{/* <form>
-					<label className='select-label'>Filter:</label>
-					<select className='select-field'>
-						<option value='show-all'>Show All</option>
-						<option value='coding'>Coding</option>
-						<option value='football'>Football</option>
-						<option value='cooking'>Cooking</option>
-					</select>
-				</form> */}
-
-				{/* <form>
-					<label className='select-label'>Order by:</label>
-					<select className='select-field'>
-						<option value='title'>Title</option>
-						<option value='votes'>Votes</option>
-						<option value='created_at'>Date</option>
-					</select>
-				</form> */}
 			</div>
-
 			<ul className='each-article'>
 				{articles.map(({ article_id, title, topic, created_at, votes }) => {
 					return (

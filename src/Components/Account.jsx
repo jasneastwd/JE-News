@@ -7,7 +7,6 @@ const Account = () => {
 	const history = useHistory();
 	const params = useParams();
 	const [account, setAccount] = useState({});
-	const [submitted, setSubmitted] = useState(false);
 
 	const patchURL = {
 		username: `${account.username}`,
@@ -27,14 +26,12 @@ const Account = () => {
 		e.preventDefault();
 		patchURL.avatar_url = newAvatar.avatar_url;
 		patchUser(patchURL).then(() => {
-			setSubmitted(true);
 			alert('avatar changed!');
+
 			setNewAvatar(patchURL);
+			history.push(`/Users`);
 		});
 	};
-	if (submitted) {
-		history.push(`/Users`);
-	}
 
 	return (
 		<main className='individual-user'>
@@ -46,7 +43,7 @@ const Account = () => {
 				<input
 					className='post-box'
 					type='url'
-					name='avatar-patch'
+					id='avatar-patch'
 					value={newAvatar.avatar_url}
 					required
 					onChange={(e) => {

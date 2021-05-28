@@ -27,11 +27,28 @@
 } */
 
 main {
-	background-color: #e5e5e5;
 	border-radius: 25px;
 	/* border: 1px solid #14213d; */
 	padding-top: 0.5em;
 }
+
+/* @media only screen and (min-width: 768px) {
+	.App {
+		display: grid;
+		grid-template-columns: 30% 70%;
+		grid-template-rows: min-content auto;
+		grid-template-areas: 'header header ' 'nav nav' 'main main';
+	}
+	.Header {
+		grid-area: header;
+	}
+	.Nav {
+		grid-area: nav;
+	}
+	.main-area {
+		grid-area: main;
+	}
+} */
 
 .section-heading {
 	margin: 0.5em;
@@ -81,6 +98,7 @@ img {
 	padding: 0.2em;
 	border-radius: 25px;
 	margin: 1em 0 1em 0;
+	grid-area: Header;
 }
 
 .Nav {
@@ -148,7 +166,7 @@ h2 {
 .select-dropdowns,
 .post-user-form {
 	background-color: #e5e5e5;
-	text-align: right;
+	text-align: left;
 	border-radius: 25px;
 }
 
@@ -183,7 +201,13 @@ h2 {
 	background-color: #ffffff;
 	padding: 0.5em;
 	border-radius: 25px;
-	margin-bottom: 1em;
+}
+
+.article-comments-section {
+	background-color: #e5e5e5;
+	padding: 0.5em;
+	margin-top: 1em;
+	border-radius: 25px;
 }
 
 .each-article,
@@ -222,7 +246,7 @@ h2 {
 }
 
 .myButton {
-	background-color: #5d737e;
+	background-color: #6c8cb2;
 	border-radius: 25px;
 	border: 1px solid #14213d;
 	display: inline-block;
@@ -239,9 +263,6 @@ h2 {
 .myButton:hover {
 	background-color: #14213d;
 }
-.myButton-delete:hover {
-	background-color: #fca311;
-}
 
 .myButton:active,
 .myButton-delete:active {
@@ -251,7 +272,7 @@ h2 {
 
 .myButton-delete {
 	margin-top: 0.5em;
-	background-color: #5d737e;
+	background-color: #6c8cb2;
 	border-radius: 25px;
 	border: 1px solid #566963;
 	display: inline-block;
@@ -269,12 +290,16 @@ h2 {
 }
 
 .post-box {
-	width: 60%;
+	width: 80%;
+	margin: 0.25em;
+}
+.select-post-box {
+	width: 80%;
 	margin: 0.25em;
 }
 
 .post-box-big {
-	width: 60%;
+	width: 80%;
 	margin: 0.25em;
 	height: 50px;
 	/* box-sizing: border-box;
@@ -284,23 +309,31 @@ h2 {
 }
 
 .post-box-comment {
-	width: 90%;
+	width: 95%;
+	border-radius: 15px;
 	margin: 0.25em;
-	height: 100px;
+
+	resize: none;
 	/* box-sizing: border-box;
 	border: 2px solid #ccc; */
 	/* border-radius: 4px; */
-	resize: none;
+}
+
+.post-article-label,
+.post-user-label,
+.post-topic.label {
+	display: block;
+	padding-left: 15px;
+	text-indent: -15px;
 }
 
 .post-box-bigger {
-	width: 60%;
+	width: 80%;
 	margin: 0.25em;
-	height: 100px;
+	resize: none;
 	/* box-sizing: border-box;
 	border: 2px solid #ccc; */
 	/* border-radius: 4px; */
-	resize: none;
 }
 
 /* 

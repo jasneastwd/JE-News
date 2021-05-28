@@ -17,7 +17,7 @@ const Article = () => {
 		body: '',
 	};
 	const [comment, setComment] = useState(emptyComment);
-	const [submitted, setSubmitted] = useState(false);
+
 	const [articleDeleted, setArticleDeleted] = useState(false);
 
 	useEffect(() => {
@@ -29,14 +29,11 @@ const Article = () => {
 	const addComment = (e) => {
 		e.preventDefault();
 		postComment(comment).then(() => {
-			setSubmitted(true);
 			alert('comment posted!');
 			setComment(emptyComment);
+			history.push(`/articles/${article.article_id}/comments`);
 		});
 	};
-	if (submitted) {
-		history.push(`/articles/${article.article_id}/comments`);
-	}
 
 	const deleteArticle = (article) => {
 		const id = article.article_id;
@@ -52,18 +49,18 @@ const Article = () => {
 	return (
 		<>
 			<main className='individual-article'>
-				<Link to={`/articles`}>
-					<button className='myButton'>Back to Articles</button>
-				</Link>
-
 				<section className='outer-article'>
 					<section className='article-body'>
 						<h2>{article.title}</h2>
+
 						<p> {article.body}</p>
 						<p>Author: {article.author}</p>
 						<p>Created at: {article.created_at}</p>
 						<p>Topic: {article.topic}</p>
 						<Votes votes={article.votes} username={article.article_id} />
+						<Link to={`/articles`}>
+							<button className='myButton'>Back to Articles</button>
+						</Link>
 						<Link to={`/articles/${article.article_id}/comments`}>
 							<button className='myButton'>Read Comments</button>
 						</Link>
@@ -84,9 +81,10 @@ const Article = () => {
 						<label htmlFor='comment-body' className='comment-box-label'>
 							Leave a comment:{' '}
 						</label>
-						<input
+						<textarea
+							rows='4'
 							type='text'
-							name='comment-body'
+							id='comment-body'
 							className='post-box-comment'
 							value={comment.body}
 							required
@@ -98,7 +96,7 @@ const Article = () => {
 									};
 								});
 							}}
-						></input>
+						></textarea>
 						<br />
 						<button className='myButton'>Post</button>
 					</form>

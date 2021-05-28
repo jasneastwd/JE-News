@@ -29,15 +29,18 @@ const Comments = () => {
 
 	return (
 		<main>
-			<h2>Previous Article Comments</h2>
-			<button
-				className='myButton'
-				onClick={() => {
-					return history.push(`/articles/${params.article_id}`);
-				}}
-			>
-				Back to Article
-			</button>
+			<section className='article-comments-section'>
+				<h2>Previous Article Comments</h2>
+				<button
+					className='myButton'
+					onClick={() => {
+						return history.push(`/articles/${params.article_id}`);
+					}}
+				>
+					Back to Article
+				</button>
+			</section>
+
 			<ul className='each-comment'>
 				{comments.map(({ author, body, votes, created_at, comment_id }) => {
 					return (
