@@ -10,12 +10,13 @@ const Topics = () => {
 	};
 	const [topics, setTopics] = useState([]);
 	const [newTopic, setNewTopic] = useState(emptyTopic);
+	const [sortOrder, setSortOrder] = useState('ASC');
 
 	useEffect(() => {
-		getTopics().then((topicsFromApi) => {
+		getTopics(sortOrder).then((topicsFromApi) => {
 			setTopics(topicsFromApi);
 		});
-	}, []);
+	}, [sortOrder]);
 
 	const addTopic = (e) => {
 		e.preventDefault();
@@ -74,7 +75,18 @@ const Topics = () => {
 					</form>
 				</div>
 				<h2>All Topics</h2>
-
+				<p>
+					Sorted by: Topics {sortOrder === 'ASC' ? 'Ascending' : 'Descending'}
+				</p>
+				<button className='myButton-arrows' onClick={() => setSortOrder('ASC')}>
+					Topics: A-Z
+				</button>
+				<button
+					className='myButton-arrows'
+					onClick={() => setSortOrder('DESC')}
+				>
+					Topics: Z-A
+				</button>
 				<ul className='each-topic'>
 					{topics.map(({ slug, description }) => {
 						return (

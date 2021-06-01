@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { getArticles, postArticle, getArticlesByTopic } from '../Utils/api';
 import Votes from '../Components/Votes.jsx';
 import { UserContext } from '../contexts/User';
@@ -9,6 +9,7 @@ const Articles = () => {
 	const history = useHistory();
 	const { user } = useContext(UserContext);
 	const { topics } = useContext(TopicContext);
+	const location = useLocation();
 	const [articles, setArticles] = useState([]);
 	const emptyArticle = {
 		topic: '',
@@ -20,9 +21,17 @@ const Articles = () => {
 	const [sortOrder, setSortOrder] = useState('ASC');
 	const [sortProperty, setSortProperty] = useState('title');
 	const [filter, setFilter] = useState('');
-	console.log('hey');
+	let query = location.search.slice(7);
+
 	useEffect(() => {
-		if (filter === 'show-all') {
+		if (query) {
+			console.log(query);
+			setFilter(query);
+			console.log(filter);
+			getArticles(filter).then((articles) => {
+				setArticles(articles);
+			});
+		} else if (filter === 'show-all') {
 			getArticles({ sortOrder, sortProperty }).then((articles) => {
 				setArticles(articles);
 			});
@@ -33,7 +42,7 @@ const Articles = () => {
 				}
 			);
 		}
-	}, [setArticles, sortOrder, sortProperty, filter]);
+	}, [setArticles, sortOrder, sortProperty, filter, query]);
 
 	const addArticle = (e) => {
 		e.preventDefault();

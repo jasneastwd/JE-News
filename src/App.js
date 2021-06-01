@@ -10,6 +10,7 @@ import Comments from './Components/Comments.jsx';
 import Footer from './Components/Footer.jsx';
 import Accounts from './Components/Accounts.jsx';
 import Account from './Components/Account.jsx';
+import ArticlesByTopic from './Components/ArticlesByTopic.jsx';
 import { useState, useEffect } from 'react';
 import { UserContext } from './contexts/User';
 import { TopicContext } from './contexts/Topic';
@@ -33,13 +34,15 @@ function App() {
 				<div className='App'>
 					<Header />
 					<Nav />
-
 					<Switch>
 						<Route exact path='/'>
 							<Home />
 						</Route>
 						<Route exact path='/topics'>
 							<Topics />
+						</Route>
+						<Route exact path='/articles?topic=:topic'>
+							<ArticlesByTopic />
 						</Route>
 						<Route exact path='/articles'>
 							<Articles />

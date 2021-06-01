@@ -4,6 +4,13 @@ const newsApi = axios.create({
 	baseURL: 'https://jasneastwd-nc-news.herokuapp.com/api',
 });
 
+export const getTopics = async (sortOrder) => {
+	const { data } = await newsApi.get('/topics', {
+		params: { order: sortOrder },
+	});
+	return data.topics;
+};
+
 export const getArticles = async ({ sortOrder, sortProperty }) => {
 	const { data } = await newsApi.get('/articles', {
 		params: { order: sortOrder, sort_by: sortProperty },
@@ -31,11 +38,6 @@ export const deleteArticleById = async (article_id) => {
 	await newsApi.delete(`/articles/${article_id}`).then(() => {
 		return alert('You have deleted the item!');
 	});
-};
-
-export const getTopics = async () => {
-	const { data } = await newsApi.get('/topics');
-	return data.topics;
 };
 
 // export const getArticlesByTopic = async (topic) => {
