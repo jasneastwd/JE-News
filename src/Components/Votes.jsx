@@ -1,5 +1,6 @@
 import * as api from '../Utils/api';
 import { useState } from 'react';
+import Button from '@material-ui/core/Button';
 
 const Votes = ({ votes, username }) => {
 	const [votesChange, setVotesChange] = useState(0);
@@ -24,12 +25,22 @@ const Votes = ({ votes, username }) => {
 	return (
 		<section>
 			<p>Votes: {votes + votesChange}</p>
-			<button disabled={incDisabled} onClick={incVotes} className='myButton'>
+			<Button
+				disabled={incDisabled}
+				onClick={incVotes}
+				color='primary'
+				variant='outlined'
+			>
 				⬆ Votes
-			</button>
-			<button disabled={decDisabled} onClick={decVotes} className='myButton'>
+			</Button>
+			<Button
+				disabled={decDisabled}
+				onClick={decVotes}
+				color='primary'
+				variant='outlined'
+			>
 				⬇ Votes
-			</button>
+			</Button>
 		</section>
 	);
 };

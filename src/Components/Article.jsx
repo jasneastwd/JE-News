@@ -3,6 +3,7 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import { getArticleById, postComment, deleteArticleById } from '../Utils/api';
 import Votes from '../Components/Votes.jsx';
 import { UserContext } from '../contexts/User';
+import Button from '@material-ui/core/Button';
 
 const Article = () => {
 	const history = useHistory();
@@ -59,21 +60,26 @@ const Article = () => {
 						<p>Topic: {article.topic}</p>
 						<Votes votes={article.votes} username={article.article_id} />
 						<Link to={`/articles`}>
-							<button className='myButton'>Back to Articles</button>
+							<Button color='primary' variant='outlined'>
+								Back to Articles
+							</Button>
 						</Link>
 						<Link to={`/articles/${article.article_id}/comments`}>
-							<button className='myButton'>Read Comments</button>
+							<Button color='primary' variant='outlined'>
+								Read Comments
+							</Button>
 						</Link>
 					</section>
 				</section>
-				<button
-					className='myButton-delete'
+				<Button
+					color='primary'
+					variant='outlined'
 					onClick={() => {
 						deleteArticle(article);
 					}}
 				>
 					Delete Article
-				</button>
+				</Button>
 			</main>
 			<div>
 				<div className='post-comment-form'>
@@ -98,7 +104,9 @@ const Article = () => {
 							}}
 						></textarea>
 						<br />
-						<button className='myButton'>Post</button>
+						<Button color='primary' variant='outlined'>
+							Post
+						</Button>
 					</form>
 				</div>
 			</div>

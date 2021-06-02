@@ -15,6 +15,7 @@ import { useState, useEffect } from 'react';
 import { UserContext } from './contexts/User';
 import { TopicContext } from './contexts/Topic';
 import { getTopics } from './Utils/api';
+import 'reactjs-popup/dist/index.css';
 
 function App() {
 	const [user, setUser] = useState({

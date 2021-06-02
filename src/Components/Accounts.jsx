@@ -1,7 +1,10 @@
 import { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../contexts/User';
-
+import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
+import Paper from '@material-ui/core/Paper';
+import Textfield from '@material-ui/core/TextField';
 import * as api from '../Utils/api';
 
 const Accounts = () => {
@@ -39,13 +42,10 @@ const Accounts = () => {
 			<section className='post-user-form'>
 				<h2>Create a user:</h2>
 				<form onSubmit={addUser}>
-					<label htmlFor='user-username' className='post-user-label'>
-						Username:{' '}
-					</label>
-					<input
-						className='post-box'
-						type='text'
-						id='user-username'
+					<Textfield
+						id='filled-basic'
+						label='Username'
+						variant='filled'
 						value={newUser.username}
 						required
 						onChange={(e) => {
@@ -56,15 +56,13 @@ const Accounts = () => {
 								};
 							});
 						}}
-					></input>
+					></Textfield>
 					<br />
-					<label htmlFor='user-name' className='post-user-label'>
-						Name:{' '}
-					</label>
-					<input
-						className='post-box'
-						type='text'
-						id='user-name'
+
+					<Textfield
+						id='filled-basic'
+						label='Full Name'
+						variant='filled'
 						value={newUser.name}
 						required
 						onChange={(e) => {
@@ -75,15 +73,12 @@ const Accounts = () => {
 								};
 							});
 						}}
-					></input>
+					></Textfield>
 					<br />
-					<label htmlFor='user-avatar-url' className='post-user-label'>
-						Photo:{' '}
-					</label>
-					<input
-						className='post-box'
-						type='text'
-						id='user-avatar-url'
+					<Textfield
+						id='filled-basic'
+						label='Avatar URL'
+						variant='filled'
 						value={newUser.avatar_url}
 						required
 						placeholder='Paste URL here'
@@ -95,9 +90,11 @@ const Accounts = () => {
 								};
 							});
 						}}
-					></input>
+					></Textfield>
 					<br />
-					<button className='myButton'>Create User</button>
+					<Button color='primary' variant='outlined'>
+						Create User
+					</Button>
 				</form>
 			</section>
 
@@ -105,13 +102,17 @@ const Accounts = () => {
 			<ul className='each-user'>
 				{users.map((user) => {
 					return (
-						<li key={user.username} className='users-list '>
+						<Paper key={user.username} className='users-list '>
 							<h2>Username: {user.username}</h2>
-							<img src={user.avatar_url} alt={user.username}></img>
-							<button className='myButton' onClick={() => logIn(user)}>
+							<Avatar src={user.avatar_url} alt={user.username}></Avatar>
+							<Button
+								color='primary'
+								variant='outlined'
+								onClick={() => logIn(user)}
+							>
 								Choose User
-							</button>
-						</li>
+							</Button>
+						</Paper>
 					);
 				})}
 			</ul>

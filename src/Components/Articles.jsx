@@ -4,6 +4,14 @@ import { getArticles, postArticle, getArticlesByTopic } from '../Utils/api';
 import Votes from '../Components/Votes.jsx';
 import { UserContext } from '../contexts/User';
 import { TopicContext } from '../contexts/Topic';
+import Popup from 'reactjs-popup';
+import Textfield from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const Articles = () => {
 	const history = useHistory();
@@ -20,7 +28,7 @@ const Articles = () => {
 	const [sortOrder, setSortOrder] = useState('ASC');
 	const [sortProperty, setSortProperty] = useState('title');
 	const [filter, setFilter] = useState('');
-	console.log('hey');
+
 	useEffect(() => {
 		if (filter === 'show-all') {
 			getArticles({ sortOrder, sortProperty }).then((articles) => {
@@ -38,7 +46,7 @@ const Articles = () => {
 	const addArticle = (e) => {
 		e.preventDefault();
 		postArticle(newArticle).then(() => {
-			<alert> article posted!</alert>;
+			<Popup />;
 			setNewArticle(emptyArticle);
 			history.push(`/articles`);
 		});
@@ -48,14 +56,11 @@ const Articles = () => {
 		<main className='Articles'>
 			<div className='post-article-form'>
 				<h2 className='article-form-headings'>Post an Article:</h2>
-				<form onSubmit={addArticle}>
-					<label htmlFor='article-topic' className='post-article-label'>
-						Topic:{' '}
-					</label>
-					<select
-						className='select-post-box'
-						type='text'
-						id='article-topic'
+				<FormControl onSubmit={addArticle}>
+					<InputLabel id='demo-simple-select-label'>Topic: </InputLabel>
+					<Select
+						labelId='demo-simple-select-label'
+						id='demo-simple-select'
 						required
 						value={newArticle.topic}
 						onChange={(e) => {
@@ -69,20 +74,17 @@ const Articles = () => {
 					>
 						{topics.map(({ slug }) => {
 							return (
-								<option value={slug} key={slug}>
+								<MenuItem value={slug} key={slug}>
 									{slug}
-								</option>
+								</MenuItem>
 							);
 						})}
-					</select>
-					<br />
-					<label htmlFor='article-title' className='post-article-label'>
-						Title:{' '}
-					</label>
-					<input
-						className='post-box'
-						type='text'
-						id='article-title'
+					</Select>
+
+					<Textfield
+						id='filled-basic'
+						label='Title'
+						variant='filled'
 						required
 						value={newArticle.title}
 						onChange={(e) => {
@@ -93,16 +95,14 @@ const Articles = () => {
 								};
 							});
 						}}
-					></input>
-					<br />
-					<label htmlFor='article-body' className='post-article-label'>
-						Body:{' '}
-					</label>
-					<textarea
+					></Textfield>
+
+					<Textfield
+						id='filled-basic'
+						label='Write your article here'
+						variant='filled'
 						rows='5'
-						className='post-box-bigger'
 						type='text'
-						id='article-body'
 						required
 						value={newArticle.body}
 						onChange={(e) => {
@@ -113,18 +113,22 @@ const Articles = () => {
 								};
 							});
 						}}
-					></textarea>
+					></Textfield>
 					<br />
-					<button className='myButton'>Post article</button>
-				</form>
+					<Button color='primary' variant='outlined'>
+						Post article
+					</Button>
+				</FormControl>
 			</div>
 
 			<div className='select-dropdowns'>
 				<h2>All Articles</h2>
-				<form>
-					<label>Filter by: </label>
-					<select
-						className='dropdown'
+				<FormControl>
+					<InputLabel id='demo-simple-select-label'>Filter by: </InputLabel>
+					<Select
+						labelId='demo-simple-select-label'
+						id='demo-simple-select'
+						required
 						value={filter}
 						onChange={(event) => {
 							setFilter(event.target.value);
@@ -137,31 +141,48 @@ const Articles = () => {
 								</option>
 							);
 						})}
-					</select>
-				</form>
+					</Select>
+				</FormControl>
 				<p>
 					Sorted by: {sortProperty}{' '}
 					{sortOrder === 'ASC' ? 'Ascending' : 'Descending'}
 				</p>
-				<button className='myButton' onClick={() => setSortProperty('title')}>
+				<Button
+					color='primary'
+					variant='outlined'
+					onClick={() => setSortProperty('title')}
+				>
 					Title
-				</button>
-				<button className='myButton' onClick={() => setSortProperty('topic')}>
+				</Button>
+				<Button
+					color='primary'
+					variant='outlined'
+					onClick={() => setSortProperty('topic')}
+				>
 					Topic
-				</button>
-				<button className='myButton' onClick={() => setSortProperty('votes')}>
+				</Button>
+				<Button
+					color='primary'
+					variant='outlined'
+					onClick={() => setSortProperty('votes')}
+				>
 					Votes
-				</button>
+				</Button>
 				<br />
-				<button className='myButton-arrows' onClick={() => setSortOrder('ASC')}>
+				<Button
+					color='primary'
+					variant='outlined'
+					onClick={() => setSortOrder('ASC')}
+				>
 					⬆
-				</button>
-				<button
-					className='myButton-arrows'
+				</Button>
+				<Button
+					color='primary'
+					variant='outlined'
 					onClick={() => setSortOrder('DESC')}
 				>
 					⬇
-				</button>
+				</Button>
 			</div>
 			<ul className='each-article'>
 				{articles.map(({ article_id, title, topic, created_at, votes }) => {

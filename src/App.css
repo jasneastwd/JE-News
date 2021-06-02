@@ -69,11 +69,11 @@ li {
 	padding: 1em;
 }
 
-img {
+/* img {
 	max-width: 20%;
 	height: auto;
 	border-radius: 25px;
-}
+} */
 
 .nav-img {
 	max-width: 10%;
@@ -250,7 +250,7 @@ h2 {
 	margin: 0.5em;
 }
 
-.myButton {
+/* .myButton {
 	background-color: #6c8cb2;
 	border-radius: 25px;
 	border: 1px solid #14213d;
@@ -267,9 +267,9 @@ h2 {
 
 .myButton:hover {
 	background-color: #14213d;
-}
+} */
 
-.myButton:active,
+/* .myButton:active,
 .myButton-delete:active {
 	position: relative;
 	top: 1px;
@@ -287,7 +287,7 @@ h2 {
 	padding: 1% 1.5%;
 	text-decoration: none;
 	text-shadow: -1px 1px 0px #2b665e;
-}
+} */
 
 .myButton-arrows {
 	border-radius: 25px;

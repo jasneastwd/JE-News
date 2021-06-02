@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { getTopics, postTopic } from '../Utils/api';
+import Button from '@material-ui/core/Button';
 
 const Topics = () => {
 	const history = useHistory();
@@ -71,22 +72,29 @@ const Topics = () => {
 							}}
 						></input>
 						<br />
-						<button className='myButton'>Post topic</button>
+						<Button color='primary' variant='outlined'>
+							Post topic
+						</Button>
 					</form>
 				</div>
 				<h2>All Topics</h2>
 				<p>
 					Sorted by: Topics {sortOrder === 'ASC' ? 'Ascending' : 'Descending'}
 				</p>
-				<button className='myButton-arrows' onClick={() => setSortOrder('ASC')}>
+				<Button
+					color='primary'
+					variant='outlined'
+					onClick={() => setSortOrder('ASC')}
+				>
 					Topics: A-Z
-				</button>
-				<button
-					className='myButton-arrows'
+				</Button>
+				<Button
+					color='primary'
+					variant='outlined'
 					onClick={() => setSortOrder('DESC')}
 				>
 					Topics: Z-A
-				</button>
+				</Button>
 				<ul className='each-topic'>
 					{topics.map(({ slug, description }) => {
 						return (

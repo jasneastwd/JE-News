@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAccountByUsername, patchUser } from '../Utils/api';
 import { Link, useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 const Account = () => {
 	const history = useHistory();
@@ -54,11 +55,15 @@ const Account = () => {
 					}}
 				></input>{' '}
 				<br />
-				<button className='myButton'>Update Avatar</button>
+				<Button color='primary' variant='outlined'>
+					Update Avatar
+				</Button>
 			</form>
 
 			<Link to='/Users'>
-				<button className='myButton'>Back to Users</button>
+				<Button color='primary' variant='outlined'>
+					Back to Users
+				</Button>
 			</Link>
 		</main>
 	);
