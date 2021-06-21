@@ -36,7 +36,7 @@ const Header = () => {
     <header className="Header">
       <h1>
         <Link to="/" className="app-heading">
-          jasneastwd news{' '}
+          JE-News{' '}
         </Link>
       </h1>
     </header>

@@ -10,8 +10,8 @@ const Home = () => {
       <h1>Welcome back {user.username} </h1>
       <section className="outer-article">
         <section className="article-body">
-          <h2>Welcome to jasneastwd news! </h2>This is my first full-stack
-          project! <br />
+          <h2>Welcome to JE-News! </h2>This is my first full-stack project!{' '}
+          <br />
           <br /> This is my first project which took approximately 10 days to
           build during my time at{' '}
           <a href="https://northcoders.com">NorthCoders</a>.
