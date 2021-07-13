@@ -4,24 +4,47 @@ import { useContext } from 'react';
 
 const Nav = () => {
   const { user } = useContext(UserContext);
+  const links = [
+    {
+      id: 1,
+      url: '/JE-News',
+      text: 'Home',
+    },
+    {
+      id: 2,
+      url: '/topics',
+      text: 'Topics',
+    },
+    {
+      id: 3,
+      url: '/articles',
+      text: 'Articles',
+    },
+    {
+      id: 4,
+      url: '/Users',
+      text: 'Users',
+    },
+    {
+      id: 5,
+      url: `/Users/${user.username}`,
+      text: 'Profile',
+    },
+  ];
+
   return (
-    <nav className="Nav">
-      <Link to="/" className="nav-links">
-        Home
-      </Link>
-      <Link to="/topics" className="nav-links">
-        Topics{' '}
-      </Link>
-      <Link to="/articles" className="nav-links">
-        Articles{' '}
-      </Link>
-      <Link to="/Users" className="nav-links">
-        Login
-      </Link>
-      <Link to={`/Users/${user.username}`} className="nav-links">
-        Profile
-      </Link>
-    </nav>
+    <div className='links-container'>
+      <ul className='links'>
+        {links.map((link) => {
+          const { id, url, text } = link;
+          return (
+            <li key={id}>
+              <a href={url}>{text}</a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 

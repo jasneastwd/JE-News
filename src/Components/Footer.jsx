@@ -1,16 +1,13 @@
 const Footer = () => {
-	return (
-		<footer className='Header'>
-			<h3>
-				<a
-					href='https://jasneastwd.github.io/MyPortfolio/'
-					className='app-heading'
-				>
-					created by jasneastwd{' '}
-				</a>
-			</h3>
-		</footer>
-	);
+  return (
+    <footer className='Header'>
+      <h4>
+        <a href='https://jasneastwd.vercel.app' className='app-heading'>
+          created by jasneastwd{' '}
+        </a>
+      </h4>
+    </footer>
+  );
 };
 
 export default Footer;

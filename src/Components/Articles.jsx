@@ -53,16 +53,16 @@ const Articles = () => {
   };
 
   return (
-    <main className="Articles">
-      <div className="select-dropdowns">
+    <main className='Articles'>
+      <div className='select-dropdowns'>
         <h2>All Articles</h2>
         <FormControl>
-          <InputLabel id="demo-simple-select-label">Filter by: </InputLabel>
+          <InputLabel id='demo-simple-select-label'>Filter by: </InputLabel>
           <Select
-            className="select-box-2"
-            variant="filled"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            className='select-box-2'
+            variant='filled'
+            labelId='demo-simple-select-label'
+            id='demo-simple-select'
             required
             value={filter}
             onChange={(event) => {
@@ -83,46 +83,46 @@ const Articles = () => {
           {sortOrder === 'ASC' ? 'Ascending' : 'Descending'}
         </p>
         <Button
-          color="primary"
-          variant="outlined"
+          color='primary'
+          variant='outlined'
           onClick={() => setSortProperty('title')}
         >
           Title
         </Button>
         <Button
-          color="primary"
-          variant="outlined"
+          color='primary'
+          variant='outlined'
           onClick={() => setSortProperty('topic')}
         >
           Topic
         </Button>
         <Button
-          color="primary"
-          variant="outlined"
+          color='primary'
+          variant='outlined'
           onClick={() => setSortProperty('votes')}
         >
           Votes
         </Button>
         <br />
         <Button
-          color="primary"
-          variant="outlined"
+          color='primary'
+          variant='outlined'
           onClick={() => setSortOrder('ASC')}
         >
           ⬆
         </Button>
         <Button
-          color="primary"
-          variant="outlined"
+          color='primary'
+          variant='outlined'
           onClick={() => setSortOrder('DESC')}
         >
           ⬇
         </Button>
       </div>
-      <ul className="each-article row">
+      <ul className='each-article row'>
         {articles.map(({ article_id, title, topic, created_at, votes }) => {
           return (
-            <li key={article_id} className="articles-list column">
+            <li key={article_id} className='articles-list column'>
               <Link to={`/articles/${article_id}`}>
                 <h3>{title}</h3>
               </Link>
@@ -130,19 +130,19 @@ const Articles = () => {
               <Link to={`/articles?topic=${topic}`}>
                 <p>Topic: {topic} </p>
               </Link>
-              <p>Posted: {created_at}</p>
+
               <Votes votes={votes} username={article_id} />
             </li>
           );
         })}
       </ul>
-      <div className="post-article-form">
-        <h2 className="article-form-headings">Post an Article:</h2>
+      <div className='post-article-form'>
+        <h2 className='article-form-headings'>Post an Article:</h2>
         <FormControl onSubmit={addArticle}>
-          <InputLabel id="demo-simple-select-label">Topic: </InputLabel>
+          <InputLabel id='demo-simple-select-label'>Topic: </InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            labelId='demo-simple-select-label'
+            id='demo-simple-select'
             required
             value={newArticle.topic}
             onChange={(e) => {
@@ -164,9 +164,9 @@ const Articles = () => {
           </Select>
 
           <Textfield
-            id="filled-basic-1"
-            label="Title"
-            variant="filled"
+            id='filled-basic-1'
+            label='Title'
+            variant='filled'
             required
             value={newArticle.title}
             onChange={(e) => {
@@ -180,11 +180,11 @@ const Articles = () => {
           ></Textfield>
 
           <Textfield
-            id="filled-basic-2"
-            label="Write your article here"
-            variant="filled"
-            rows="5"
-            type="text"
+            id='filled-basic-2'
+            label='Write your article here'
+            variant='filled'
+            rows='5'
+            type='text'
             required
             value={newArticle.body}
             onChange={(e) => {
@@ -197,7 +197,7 @@ const Articles = () => {
             }}
           ></Textfield>
           <br />
-          <Button color="primary" variant="outlined">
+          <Button color='primary' variant='outlined'>
             Post article
           </Button>
         </FormControl>
